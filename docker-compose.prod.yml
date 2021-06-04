@@ -13,7 +13,7 @@ services:
 
   api_post:
     container_name: jibjabpost
-    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-posts/jibjab_posts-master:latest
+    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-posts/jibjab_posts-production:latest
     environment:
       DB_USER: postgres
       DB_PASSWORD: 1234
@@ -35,7 +35,7 @@ services:
 
   api_user:
     container_name: jibjabuser
-    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-users/jibjab_users-master:latest
+    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-users/jibjab_users-production:latest
     environment:
       DB_USER: postgres
       DB_PASSWORD: 1234
@@ -47,7 +47,7 @@ services:
 
   client:
     container_name: jibjabclient
-    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-client/jibjab_client-main:latest
+    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-client/jibjab_client-production:latest
 
   revproxy:
     build:
