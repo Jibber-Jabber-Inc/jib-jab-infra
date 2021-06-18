@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db_post:
@@ -13,6 +13,7 @@ services:
 
   api_post:
     container_name: jibjabpost
+    depends_on: db_post
     image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-posts/jibjab_posts-develop:latest
     environment:
       DB_USER: postgres
@@ -35,6 +36,7 @@ services:
 
   api_user:
     container_name: jibjabuser
+    depends_on: db_user
     image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-users/jibjab_users-develop:latest
     environment:
       DB_USER: postgres
@@ -44,6 +46,28 @@ services:
       DB_PORT: 5432
       JJ_SECRET: secret_key
       JJ_EXPIRATION: 1000000000
+
+  db_message:
+    container_name: postgresdbmessages
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    volumes:
+      - messages_data:/var/lib/postgresql/data
+
+  api_message:
+    container_name: jibjabmessage
+    depends_on: db_user
+    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-messages/jibjab_messages-develop:latest
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: 1234
+      DB_NAME: postgres
+      DB_HOST: postgresdbusers
+      DB_PORT: 5432
+      CLIENT_URL: "http://jibjabclient:80"
 
   client:
     container_name: jibjabclient
@@ -59,3 +83,4 @@ services:
 volumes:
   posts_data:
   users_data:
+  messages_data:
