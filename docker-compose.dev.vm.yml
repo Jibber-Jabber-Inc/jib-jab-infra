@@ -13,7 +13,7 @@ services:
 
   api_post:
     container_name: jibjabpost
-    depends_on: db_post
+    depends_on: [db_post]
     image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-posts/jibjab_posts-develop:latest
     environment:
       DB_USER: postgres
@@ -36,7 +36,7 @@ services:
 
   api_user:
     container_name: jibjabuser
-    depends_on: db_user
+    depends_on: [db_user]
     image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-users/jibjab_users-develop:latest
     environment:
       DB_USER: postgres
@@ -59,7 +59,7 @@ services:
 
   api_message:
     container_name: jibjabmessage
-    depends_on: db_user
+    depends_on: [db_message]
     image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-messages/jibjab_messages-develop:latest
     environment:
       DB_USER: postgres
@@ -78,7 +78,7 @@ services:
       context: .
       dockerfile: Dockerfile.proxy
     ports:
-      - 80:80
+      - 3001:80
 
 volumes:
   posts_data:
