@@ -80,9 +80,12 @@ services:
       context: .
       dockerfile: Dockerfile.proxy
     ports:
-      - 3001:80
+      - 80:80
 
 volumes:
   posts_data:
+    external: true
   users_data:
+    external: true
   messages_data:
+    external: true
