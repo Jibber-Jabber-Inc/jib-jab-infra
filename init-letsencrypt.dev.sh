@@ -39,7 +39,7 @@ echo
 
 
 echo "### Starting nginx ..."
-docker-compose -f docker-compose.dev.vm.yml up --force-recreate -d nginx
+docker-compose -f docker-compose.dev.vm.yml up --force-recreate -d revproxy
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
@@ -77,4 +77,4 @@ docker-compose -f docker-compose.dev.vm.yml run --rm --entrypoint "\
 echo
 
 echo "### Reloading nginx ..."
-docker-compose -f docker-compose.dev.vm.yml exec nginx nginx -s reload
+docker-compose -f docker-compose.dev.vm.yml exec revproxy nginx -s reload
