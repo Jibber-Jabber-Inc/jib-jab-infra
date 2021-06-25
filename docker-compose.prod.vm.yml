@@ -58,7 +58,7 @@ services:
   api_message:
     container_name: jibjabmessage
     depends_on: [db_message]
-    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-messages/jibjab_messages-productio:latest
+    image: docker.pkg.github.com/jibber-jabber-inc/jib-jab-api-messages/jibjab_messages-production:latest
     environment:
       DB_USER: postgres
       DB_PASSWORD: 1234
